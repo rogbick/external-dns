@@ -6,6 +6,7 @@ images:
     newTag: v0.15.0
 
 resources:
+  - ./namespace.yaml
   - ../charts/crds/dnsendpoint.yaml
   - ./external-dns-deployment.yaml
   - ./external-dns-serviceaccount.yaml
