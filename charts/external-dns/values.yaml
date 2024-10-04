@@ -197,7 +197,7 @@ interval: 1m
 triggerLoopOnEvent: false
 
 # -- if `true`, _ExternalDNS_ will run in a namespaced scope (`Role`` and `Rolebinding`` will be namespaced too).
-namespaced: false
+namespaced: true
 
 # -- _Kubernetes_ resources to monitor for DNS entries.
 sources:
