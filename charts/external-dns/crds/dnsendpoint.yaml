@@ -1,10 +1,74 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: dnsendpoints.externaldns.k8s.io
   annotations:
     api-approved.kubernetes.io: https://github.com/kubernetes-sigs/external-dns/pull/2007
+  creationTimestamp: '2024-10-03T15:53:21Z'
+  generation: 1
+  managedFields:
+    - apiVersion: apiextensions.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:api-approved.kubernetes.io: {}
+        f:spec:
+          f:conversion:
+            .: {}
+            f:strategy: {}
+          f:group: {}
+          f:names:
+            f:kind: {}
+            f:listKind: {}
+            f:plural: {}
+            f:singular: {}
+          f:scope: {}
+          f:versions: {}
+      manager: helm
+      operation: Update
+      time: '2024-10-03T15:53:21Z'
+    - apiVersion: apiextensions.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:acceptedNames:
+            f:kind: {}
+            f:listKind: {}
+            f:plural: {}
+            f:singular: {}
+          f:conditions:
+            k:{"type":"Established"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"KubernetesAPIApprovalPolicyConformant"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"NamesAccepted"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+      manager: kube-apiserver
+      operation: Update
+      subresource: status
+      time: '2024-10-03T15:53:21Z'
+  name: dnsendpoints.externaldns.k8s.io
+  resourceVersion: '3947'
+  uid: 24fe4b6e-3baa-4b07-a5c7-a328e7664cf8
 spec:
+  conversion:
+    strategy: None
   group: externaldns.k8s.io
   names:
     kind: DNSEndpoint
@@ -18,19 +82,32 @@ spec:
         openAPIV3Schema:
           properties:
             apiVersion:
-              description: |-
-                APIVersion defines the versioned schema of this representation of an object.
-                Servers should convert recognized schemas to the latest internal value, and
+              description: >-
+                APIVersion defines the versioned schema of this representation
+                of an object.
+
+                Servers should convert recognized schemas to the latest internal
+                value, and
+
                 may reject unrecognized values.
-                More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+
+                More info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
               type: string
             kind:
-              description: |-
-                Kind is a string value representing the REST resource this object represents.
-                Servers may infer this from the endpoint the client submits requests to.
+              description: >-
+                Kind is a string value representing the REST resource this
+                object represents.
+
+                Servers may infer this from the endpoint the client submits
+                requests to.
+
                 Cannot be updated.
+
                 In CamelCase.
-                More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+                More info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
               type: string
             metadata:
               type: object
@@ -39,9 +116,9 @@ spec:
               properties:
                 endpoints:
                   items:
-                    description:
-                      Endpoint is a high-level way of a connection between
-                      a service and an IP
+                    description: >-
+                      Endpoint is a high-level way of a connection between a
+                      service and an IP
                     properties:
                       dnsName:
                         description: The hostname of the DNS record
@@ -54,9 +131,10 @@ spec:
                       providerSpecific:
                         description: ProviderSpecific stores provider specific config
                         items:
-                          description:
-                            ProviderSpecificProperty holds the name and value
-                            of a configuration which is specific to individual DNS providers
+                          description: >-
+                            ProviderSpecificProperty holds the name and value of
+                            a configuration which is specific to individual DNS
+                            providers
                           properties:
                             name:
                               type: string
@@ -69,14 +147,14 @@ spec:
                         format: int64
                         type: integer
                       recordType:
-                        description:
-                          RecordType type of record, e.g. CNAME, A, AAAA,
-                          SRV, TXT etc
+                        description: >-
+                          RecordType type of record, e.g. CNAME, A, AAAA, SRV,
+                          TXT etc
                         type: string
                       setIdentifier:
-                        description:
-                          Identifier to distinguish multiple records with
-                          the same name and type (e.g. Route53 records with routing
+                        description: >-
+                          Identifier to distinguish multiple records with the
+                          same name and type (e.g. Route53 records with routing
                           policies other than 'simple')
                         type: string
                       targets:
@@ -100,3 +178,27 @@ spec:
       storage: true
       subresources:
         status: {}
+status:
+  acceptedNames:
+    kind: DNSEndpoint
+    listKind: DNSEndpointList
+    plural: dnsendpoints
+    singular: dnsendpoint
+  conditions:
+    - lastTransitionTime: '2024-10-03T15:53:21Z'
+      message: approved in https://github.com/kubernetes-sigs/external-dns/pull/2007
+      reason: ApprovedAnnotation
+      status: 'True'
+      type: KubernetesAPIApprovalPolicyConformant
+    - lastTransitionTime: '2024-10-03T15:53:21Z'
+      message: no conflicts found
+      reason: NoConflicts
+      status: 'True'
+      type: NamesAccepted
+    - lastTransitionTime: '2024-10-03T15:53:21Z'
+      message: the initial names have been accepted
+      reason: InitialNamesAccepted
+      status: 'True'
+      type: Established
+  storedVersions:
+    - v1alpha1
