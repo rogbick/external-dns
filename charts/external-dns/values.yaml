@@ -227,7 +227,7 @@ excludeDomains: []
 
 provider:
   # -- _ExternalDNS_ provider name; for the available providers and how to configure them see [README](https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/README.md#providers).
-  name: aws
+  name: rfc2136
   webhook:
     image:
       # -- (string) Image repository for the `webhook` container.
